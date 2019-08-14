@@ -1,14 +1,23 @@
 import React from "react";
-import "./gridGallery.css";
+import "./GridGallery.css";
+import { getImageUrl } from "../flickrUtils";
 
-export default class gridGallery extends React.Component {
+//todo - limit num of images to render / add pagination
+
+export default class GridGallery extends React.Component {
+  getImages = () => {
+    return this.props.images.map(image => {
+      const { farm, server, id, secret } = image;
+      const imageUrl = getImageUrl(farm, server, id, secret);
+      return (
+        <div className="image-item" key={id}>
+          <img src={imageUrl} alt={id} width="200px" />
+        </div>
+      );
+    });
+  };
+
   render() {
-    return `<div className="image-grid" style={{ marginTop: "30px" }}>
-    {loaded
-      ? images.map((image, index) => (
-          <UnsplashImage url={image.urls.regular} key={index} />
-        ))
-      : ""}
-  </div>`;
+    return <div className="image-grid">{this.getImages()}</div>;
   }
 }
