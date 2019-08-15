@@ -1,26 +1,23 @@
 import constants from "./constants";
+import _ from "lodash";
 
-//status in constants
-//turn into arrow functions for ahidut
-
-function checkHttpStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+const checkHttpStatus = response => {
+  if (_.inRange(response.status, 200, 300)) {
     return response;
   } else {
     throw response;
   }
-}
+};
 
-function getImagesArray(response) {
-  console.log("inside getimagesarray");
+const getImagesArray = response => {
   if (response.photos.total > 0) {
     return response.photos.photo;
   } else {
     return [];
   }
-}
+};
 
-export async function fetchImagesAsync(searchValue) {
+const fetchImagesAsync = async searchValue => {
   const url =
     constants.FLICKR_BASE_URL +
     "&text=" +
@@ -34,10 +31,12 @@ export async function fetchImagesAsync(searchValue) {
     let imagesArray = await getImagesArray(data);
     return imagesArray;
   } catch (err) {
-    console.log(err);
+    console.log(err); //search for best practice regarding catching error
   }
-}
+};
 
-export function getImageUrl(farm, server, id, secret) {
+const getImageUrl = (farm, server, id, secret) => {
   return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
-}
+};
+
+export { fetchImagesAsync, getImageUrl };

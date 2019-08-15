@@ -23,7 +23,7 @@ export default class App extends React.Component {
     };
   }
 
-  updateLocalStorage(searchValue, cachedImagesList) {
+  updateLocalStorage = (searchValue, cachedImagesList) => {
     let searchTerms = this.state.previousSearches;
     if (!searchTerms.includes(searchValue)) {
       console.log("search term len" + searchTerms.length);
@@ -41,7 +41,7 @@ export default class App extends React.Component {
         JSON.stringify(this.state.previousSearches)
       );
     }
-  }
+  };
 
   onSearch = async searchValue => {
     if (!this.isEmptySearchTerm(searchValue)) {
@@ -50,7 +50,6 @@ export default class App extends React.Component {
         noResult: imagesArray.length === 0,
         images: imagesArray
       });
-      // this.setState({ images: imagesArray });
       this.updateLocalStorage(searchValue, imagesArray);
     } else {
       this.setState({ searchValue: "", images: [] });
@@ -65,10 +64,6 @@ export default class App extends React.Component {
     console.log("set search val");
     this.setState({ searchValue: valueFromInput });
   };
-
-  componentWillUnmount() {
-    this.onSearch.cancel();
-  }
 
   getPreviousSearchTerms = () => {
     return _.map(this.state.previousSearches, searchPair => {
@@ -86,6 +81,10 @@ export default class App extends React.Component {
       });
     }
   };
+
+  componentWillUnmount() {
+    this.onSearch.cancel(); //make sure to cancel due to debounce
+  }
 
   render() {
     return (
