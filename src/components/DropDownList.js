@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./DropDownList.css";
 import _ from "lodash";
 
@@ -28,3 +29,9 @@ export default class DropDownList extends React.Component {
     );
   }
 }
+
+DropDownList.propTypes = {
+  searchValue: PropTypes.string,
+  previousSearches: PropTypes.array,
+  handleSearchTermClick: PropTypes.func
+};
