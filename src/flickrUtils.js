@@ -2,7 +2,13 @@ import constants from "./constants";
 import _ from "lodash";
 
 const checkHttpStatus = response => {
-  if (_.inRange(response.status, 200, 300)) {
+  if (
+    _.inRange(
+      response.status,
+      constants.BOTTOM_SUCCESS_STATUS_CODE,
+      constants.TOP_SUCCESS_STATUS_CODE
+    )
+  ) {
     return response;
   } else {
     throw response;
