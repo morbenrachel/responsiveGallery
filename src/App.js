@@ -7,8 +7,6 @@ import _ from "lodash";
 import constants from "./constants";
 import "./App.css";
 
-//add PropTypes to components
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -48,9 +46,14 @@ export default class App extends React.Component {
   onSearch = async searchValue => {
     if (!this.isEmptySearchTerm(searchValue)) {
       const imagesArray = await fetchImagesAsync(searchValue);
-      this.setState({ noResult: imagesArray.length === 0 });
-      this.setState({ images: imagesArray });
+      this.setState({
+        noResult: imagesArray.length === 0,
+        images: imagesArray
+      });
+      // this.setState({ images: imagesArray });
       this.updateLocalStorage(searchValue, imagesArray);
+    } else {
+      this.setState({ searchValue: "", images: [] });
     }
   };
 

@@ -22,7 +22,6 @@ export default class GridGallery extends React.Component {
   }
 }
 
-// validating prop types
 GridGallery.propTypes = {
-  images: PropTypes.number
+  images: PropTypes.array
 };
