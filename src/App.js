@@ -4,7 +4,10 @@ import GridGallery from "./components/GridGallery";
 import DropDownList from "./components/DropDownList";
 import Dropdown from "./components/Dropdown";
 import { fetchImagesAsync } from "./utils/flickrUtils";
-import { getCachedImageList } from "./utils/localStorageUtils";
+import {
+  getCachedImageList,
+  getPreviousSearchTerms
+} from "./utils/localStorageUtils";
 import constants from "./constants";
 import "./App.css";
 import _ from "lodash";
@@ -39,13 +42,14 @@ export default class App extends React.Component {
   };
 
   updateLocalStorage = (searchValue, cachedImagesList) => {
-    let searchTerms = this.state.previousSearches;
-    if (!searchTerms.includes(searchValue)) {
-      if (searchTerms.length === constants.SEARCHES_STORAGE_THRESHOLD) {
-        searchTerms = _.drop(searchTerms);
+    let searchPairs = this.state.previousSearches;
+    const prevSearchTerms = getPreviousSearchTerms(searchPairs);
+    if (!prevSearchTerms.includes(searchValue)) {
+      if (prevSearchTerms.length === constants.SEARCHES_STORAGE_THRESHOLD) {
+        searchPairs = _.drop(searchPairs);
       }
       this.setState({
-        previousSearches: [...searchTerms, { searchValue, cachedImagesList }]
+        previousSearches: [...searchPairs, { searchValue, cachedImagesList }]
       });
       localStorage.setItem(
         constants.LOCAL_STORAGE_KEY,
