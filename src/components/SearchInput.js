@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./SearchInput.css";
-import _ from "lodash";
 
 export default class SearchInput extends React.Component {
   render() {

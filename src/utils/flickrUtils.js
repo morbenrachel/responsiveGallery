@@ -1,4 +1,4 @@
-import constants from "./constants";
+import constants from "../constants";
 import _ from "lodash";
 
 const checkHttpStatus = response => {
@@ -32,8 +32,8 @@ const fetchImagesAsync = async searchValue => {
     constants.IMAGES_PER_PAGE;
   try {
     const response = await fetch(url);
-    checkHttpStatus(response);
-    const data = await response.json();
+    const verifiedResponse = await checkHttpStatus(response);
+    const data = await verifiedResponse.json();
     let imagesArray = await getImagesArray(data);
     return imagesArray;
   } catch (err) {

@@ -25,3 +25,5 @@ describe("localStorage logic", function() {
 
   it("should not save a search term that's already in the localStorage", () => {});
 });
+
+it("");
