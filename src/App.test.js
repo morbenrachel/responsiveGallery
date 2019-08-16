@@ -10,20 +10,20 @@ it("renders without crashing", () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it("does not render image list after text input was deleted", () => {}); //not sure according to guidelines that this is correct
+// it("does not render image list after text input was deleted", () => {}); //not sure according to guidelines that this is correct
 
-it("should show saved searches if there are any in localStorage");
+// it("should show saved searches if there are any in localStorage");
 
-it("should render grid gallery if there are images in the state");
+// it("should render grid gallery if there are images in the state");
 
-describe("<GridGallery/>", () => {});
+// describe("<GridGallery/>", () => {});
 
-describe("localStorage logic", function() {
-  it("should limit that amount of search terms saved in the localStorage according to SEARCHES_STORAGE_THRESHOLD", () => {});
+// describe("localStorage logic", function() {
+//   it("should limit that amount of search terms saved in the localStorage according to SEARCHES_STORAGE_THRESHOLD", () => {});
 
-  it("should knock out the oldest search term from localStorage if SEARCHES_STORAGE_THRESHOLD passed", () => {});
+//   it("should knock out the oldest search term from localStorage if SEARCHES_STORAGE_THRESHOLD passed", () => {});
 
-  it("should not save a search term that's already in the localStorage", () => {});
-});
+//   it("should not save a search term that's already in the localStorage", () => {});
+// });
 
-it("");
+// it("");

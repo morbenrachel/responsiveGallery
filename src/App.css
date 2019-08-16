@@ -1,10 +1,20 @@
-.top-container {
+.app {
+  display: grid;
+}
+
+h2 {
+  margin-top: 10px;
   text-align: center;
-  border: 1px solid black;
+}
+
+.top-container {
+  margin-left: 1px;
+  border: 5px solid black;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
   margin-bottom: 20px;
-  /* display: grid;
-  grid-gap: 1rem; */
-  /* grid-template-rows: repeat(auto-fit, minmax(19rem, 1fr)); */
 }
 
 .no-results {
@@ -14,12 +24,3 @@
 .drop-down-list {
   margin-bottom: 20px;
 }
-
-/* input {
-  text-align: center;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
-} */
