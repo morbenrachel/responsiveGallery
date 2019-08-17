@@ -1,6 +1,6 @@
 import React from "react";
 import "./Dropdown.css";
-import _ from "lodash";
+import PropTypes from "prop-types";
 import { getPreviousSearchTerms } from "../utils/localStorageUtils";
 
 class Dropdown extends React.Component {
@@ -21,7 +21,9 @@ class Dropdown extends React.Component {
     this.setState({
       open: false
     });
-    this.props.handleSearchTermClick(item);
+    if (item !== this.props.searchValue) {
+      this.props.handleSearchTermClick(item);
+    }
   };
 
   handleClickOutside = event => {
@@ -88,3 +90,9 @@ class Dropdown extends React.Component {
 }
 
 export default Dropdown;
+
+Dropdown.propTypes = {
+  searchValue: PropTypes.string,
+  previousSearches: PropTypes.array,
+  handleSearchTermClick: PropTypes.func
+};

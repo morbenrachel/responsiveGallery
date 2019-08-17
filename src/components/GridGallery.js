@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./GridGallery.css";
 import { getImageUrl } from "../utils/flickrUtils";
 
-//todo - limit num of images to render / add pagination
 export default class GridGallery extends React.Component {
   getImages = () => {
     return this.props.images.map(image => {
