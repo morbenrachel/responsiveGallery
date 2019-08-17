@@ -14,8 +14,8 @@ $ npm start
 
 ### Description:
 
-*An image search page that shows results in a responsive gallery as the user types.
-*Choose previous search terms from a saved list
+* An image search page that shows results in a responsive gallery as the user types.
+* Choose previous search terms from a saved list
 
 
 ### Constants:
