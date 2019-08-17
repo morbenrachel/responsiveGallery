@@ -1,7 +1,7 @@
 ## Responsive Gallery with Live Search (Flickr API)
 Live search for images from the Flickr API
 
-![](https://i.gyazo.com/1d7102847723248380ff77425b03ebd2.gif)
+![](https://gyazo.com/1d7102847723248380ff77425b03ebd2.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
