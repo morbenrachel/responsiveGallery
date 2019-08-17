@@ -1,4 +1,3 @@
-import constants from "../constants";
 import _ from "lodash";
 
 const getPreviousSearchTerms = searchPairs => {

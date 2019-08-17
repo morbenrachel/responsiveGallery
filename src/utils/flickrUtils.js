@@ -37,7 +37,7 @@ const fetchImagesAsync = async searchValue => {
     let imagesArray = await getImagesArray(data);
     return imagesArray;
   } catch (err) {
-    console.log(err); //search for best practice regarding catching error
+    console.log(err);
   }
 };
 
