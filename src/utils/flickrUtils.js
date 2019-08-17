@@ -34,7 +34,7 @@ const fetchImagesAsync = async searchValue => {
     const response = await fetch(url);
     const verifiedResponse = await checkHttpStatus(response);
     const data = await verifiedResponse.json();
-    let imagesArray = await getImagesArray(data);
+    const imagesArray = await getImagesArray(data);
     return imagesArray;
   } catch (err) {
     console.log(err);
