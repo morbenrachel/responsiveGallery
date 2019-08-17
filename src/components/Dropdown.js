@@ -14,10 +14,7 @@ class Dropdown extends React.Component {
   container = React.createRef();
 
   getSearchTerms = () => {
-    console.log(this.props.list);
-    let check = getPreviousSearchTerms(this.props.list);
-    console.log(check);
-    return check;
+    return getPreviousSearchTerms(this.props.list);
   };
 
   selectItem = item => {
@@ -69,7 +66,6 @@ class Dropdown extends React.Component {
           <div>
             <ul>
               {this.getSearchTerms().map(item => {
-                console.log(item);
                 return (
                   <li
                     value={item}
