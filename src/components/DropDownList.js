@@ -6,6 +6,7 @@ import { getPreviousSearchTerms } from "../utils/localStorageUtils";
 
 export default class DropDownList extends React.Component {
   handleClick = value => {
+    console.log(this.props.previousSearches[value]);
     if (value !== this.props.searchValue) {
       this.props.handleSearchTermClick(value);
     }
@@ -15,13 +16,27 @@ export default class DropDownList extends React.Component {
     return getPreviousSearchTerms(this.props.previousSearches);
   };
 
+  handleFocus = e => {
+    console.log(e.target);
+    e.target.selectedIndex = -1;
+  };
+
+  handleBlur = e => {
+    console.log(e.target);
+    e.target.selectedIndex = -1;
+  };
+
   render() {
     return (
       <div className="drop-down-list">
         Previous Searches:
         <select
           onChange={e => this.props.handleSearchTermClick(e.target.value)}
+          // onClick={e => this.handleFocus(e)}
         >
+          <option selected disabled hidden>
+            Choose here
+          </option>
           {_.map(this.getSearchTerms(), searchValue => {
             return (
               <option value={searchValue} key={searchValue}>
@@ -30,6 +45,20 @@ export default class DropDownList extends React.Component {
             );
           })}
         </select>
+        {/* <ul drop-down-list>
+          Previous Searches
+          {_.map(this.getSearchTerms(), searchValue => {
+            return (
+              <li
+                value={searchValue}
+                key={searchValue}
+                onClick={e => this.handleClick(e.target.value)}
+              >
+                {searchValue}
+              </li>
+            );
+          })}
+        </ul> */}
       </div>
     );
   }

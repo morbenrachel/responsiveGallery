@@ -1,56 +1,91 @@
 import React from "react";
 import "./Dropdown.css";
 import _ from "lodash";
+import { getPreviousSearchTerms } from "../utils/localStorageUtils";
 
 class Dropdown extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state = {
-      displayMenu: false
+      open: false
     };
-
-    this.showDropdownMenu = this.showDropdownMenu.bind(this);
-    this.hideDropdownMenu = this.hideDropdownMenu.bind(this);
   }
 
-  showDropdownMenu(event) {
-    event.preventDefault();
-    this.setState({ displayMenu: true }, () => {
-      document.addEventListener("click", this.hideDropdownMenu);
-    });
-  }
+  container = React.createRef();
 
-  hideDropdownMenu() {
-    this.setState({ displayMenu: false }, () => {
-      document.removeEventListener("click", this.hideDropdownMenu);
+  getSearchTerms = () => {
+    console.log(this.props.list);
+    let check = getPreviousSearchTerms(this.props.list);
+    console.log(check);
+    return check;
+  };
+
+  selectItem = item => {
+    this.setState({
+      open: false
     });
+    this.props.handleSearchTermClick(item);
+  };
+
+  handleClickOutside = event => {
+    if (
+      this.container.current &&
+      !this.container.current.contains(event.target)
+    ) {
+      this.setState({
+        open: false
+      });
+    }
+  };
+
+  handleButtonClick = () => {
+    this.setState(state => {
+      return {
+        open: !state.open
+      };
+    });
+  };
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
   render() {
     return (
-      <div className="dropdown">
-        <div className="button" onClick={this.showDropdownMenu}>
+      <div className="dd-container" ref={this.container}>
+        <button
+          type="button"
+          className="dd-title"
+          onClick={this.handleButtonClick}
+        >
           Previous Searches
-        </div>
-        {this.state.displayMenu ? (
-          <ul>
-            {_.map(this.props.previousSearches, searchTerm => {
-              return (
-                <li>
-                  <a
-                    className="active"
-                    href="#Create Page"
-                    key={searchTerm}
-                    onClick={this.props.handleSearchTermClick}
+          {this.props.headerTitle}
+          <i className="arrow-down" />
+        </button>
+        {this.state.open && (
+          <div>
+            <ul>
+              {this.getSearchTerms().map(item => {
+                console.log(item);
+                return (
+                  <li
+                    value={item}
+                    className="dd-list-item"
+                    key={item}
+                    onClick={() => {
+                      this.selectItem(item);
+                    }}
                   >
-                    {searchTerm}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        ) : null}
+                    {item}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
