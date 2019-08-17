@@ -12,6 +12,12 @@ $ npm install
 $ npm start
 ```
 
+### Description:
+
+*An image search page that shows results in a responsive gallery as the user types.
+*Choose previous search terms from a saved list
+
+
 ### Constants:
 Tweak the following values in the constants.js file according to your preferences:
 
