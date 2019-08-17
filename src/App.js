@@ -14,7 +14,7 @@ import _ from "lodash";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    // localStorage.removeItem(constants.LOCAL_STORAGE_KEY); //********** */
+    localStorage.removeItem(constants.LOCAL_STORAGE_KEY); //********** */
     this.onSearch = _.debounce(this.onSearch, constants.DEBOUNCE_VALUE);
     const savedSearches = JSON.parse(
       localStorage.getItem(constants.LOCAL_STORAGE_KEY)
